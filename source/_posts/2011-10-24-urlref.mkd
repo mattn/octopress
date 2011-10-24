@@ -25,7 +25,7 @@ URLから自動で本文らしい所を抜き取って引用文にしてくれ�
 
 {% urlref http://twitter.com/hasegawayosuke/ %}
 
-こんな感じだし、こんなのだと
+こんな感じだし
 
 ```
 {&#37; urlref https://twitter.com/hasegawayosuke/status/127346935911821312 &#37;}
