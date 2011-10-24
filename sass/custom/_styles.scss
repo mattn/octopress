@@ -1,0 +1,12 @@
+// This File is imported last, and will override other styles in the cascade
+// Add styles here to make changes without digging in too much
+blockquote {
+  background-color: #eeeeee;
+  border-right: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-radius: 0.4em;
+}
+
+$header-bg: #263347;
+$subtitle-color: lighten($header-bg, 58);

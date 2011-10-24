@@ -1,0 +1,9 @@
+---
+layout: post
+title: "githubとjekyllとoctopressで作るブログ"
+comments: true
+categories:
+---
+便利すぎる...
+
+{% gist 1292428 %}

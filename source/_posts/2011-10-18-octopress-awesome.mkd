@@ -1,0 +1,103 @@
+---
+layout: post
+title: "「githubとjekyllとoctopressで作る簡単でモダンなブログ」をmarkdownで書き直してみた"
+comments: true
+categories: github, jekyll, octopress
+---
+
+自分で書いた記事だけど...
+
+{% blockquote Big Sky http://mattn.kaoriya.net/software/lang/ruby/20111017205717.htm githubとjekyllとoctopressで作る簡単でモダンなブログ %}
+以前、「jekyllで始める簡単ブログ」という記事を書いたのですが...
+{% endblockquote %}
+
+を実際にoctopressで書くと、どんな感じかやってみた。
+まぁblosxomのテキストをmarkdownに書き直しただけなんですが。
+一番下に、markdownにした場合のテキストを貼り付けてあります。
+
+* * *
+
+以前、「jekyllで始める簡単ブログ」という記事を書いたのですが
+
+{% blockquote Big Sky http://mattn.kaoriya.net/software/lang/ruby/20090409185248.htm Big Sky :: Jekyllで始める簡単ブログ %}
+GithubのユーザページでJekyllが使われる様になりました。 GitHub Pages Upgraded to Jekyll 0.5.0 - GitHub I just released Jek...
+{% endblockquote %}
+
+octopressというのを使うともっと簡単に出来る事が分かった。
+
+{% blockquote Ocotopress http://octopress.org Octopress %}
+Octopress is a framework designed by Brandon Mathis for Jekyll , the blog aware static site generato...
+{% endblockquote %}
+
+{% blockquote image/octopress https://github.com/imathis/octopress imathis/octopress - GitHub %}
+What is Octopress? Octopress is Jekyll blogging at its finest. Octopress sports a clean responsive t...
+{% endblockquote %}
+
+以下簡単な手順を示す。
+このgithubリポジトリは基本的に、1ブログに対して1つcloneする。cloneしたら
+
+```
+# rake install
+```
+
+する。octopressをシステムにインストールのではなく、このブログ用リポジトリにsassテーマをキャッシュさせる為の設定を行うだけなので安心してやって貰ってok。
+次にgithubにブログを作るのであれば
+
+```
+# rake setup_github_pages
+```
+
+を実行し、読み取り書き込み権限のあるgit URLを貼り付けて完了。
+Windowsの場合はちょっとここで修正が必要で、`config.rb`とか`Rakefile`に変なパスが書かれているので直す。実際には`public/c:/path/to/public...`みたいなフルパスが重なっているはずなので`public...`に直せばok。
+これについては時間があったらパッチ書いてpull requestを送るつもり。
+
+さて、これでブログを書く準備が出来ました。簡単すぎますね！
+
+試しに`source/_posts/2011-10-17-github-jekyll.mkd`というmarkdownのファイルを作ります。中身は以前ご紹介した内容と変わりませんが、ocotopressは幾らか拡張プラグインが入っているので色んな書き方が出来ます。
+例えばgist tagプラグインを使って
+
+```
+---
+layout: post
+title: "githubとjekyllとoctopressで作るブログ"
+date: 2011-07-03 5:59
+comments: true
+categories:
+---
+便利すぎる...
+
+{&#37; gist 1292428 &#37;}
+```
+
+こう書いて
+
+```
+# rake gen_deploy
+```
+
+すると
+
+こんな記事が出来上がります。dateはファイル名じゃなくてdateの方が(設定されていれば)優先されるみたいですね。以後は記事を書いて<code>rake den_deploy</code>するだけの簡単なお仕事です。
+他にも、imageタグや、haml形式入力、html5 videoタグなど、色んなプラグインがあります。また、sassフォルダ内にあるsassファイルを弄れば簡単しかも柔軟なCSSを吐き出せます。
+なお、`_config.xml`を弄ってタイトルやサブタイトル、githubアカウント、twitterアカウントなんかを設定すると上述の様なサイトが簡単に出来上がります。
+
+```
+# ----------------------- #
+#      Main Configs       #
+# ----------------------- #
+
+url: http://mattn.github.com/blog
+title: "ギッハブる日記"
+subtitle: ギッハブで作る開発日誌
+author: mattn
+```
+
+気をつけておいて欲しいのは、github/jekyllはCGIで動いている訳じゃなくて、octopressが静的コンテンツを生成しているので、記事をアップする環境に依存する事。まぁここはbundleを使っているのでOSさえ変わらなければ大丈夫かと思います。Windowsからでも既述の様な修正を入れれば使えています。無料のgithubで簡単にしかもモダンなブログサイトを作りたい方は、一考してみてはどうでしょうか。
+
+* * *
+
+以上が本文、でこのmarkdownのソースは以下。
+
+{% gist 1295049 %}
+
+しかしgist tagプラグイン便利だ。
