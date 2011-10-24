@@ -48,7 +48,7 @@ octopressにpull request送ったけど、取り入れられるかどうかは�
 #
 # Outputs a string with a given URL
 #
-#   {% urlref http://google.com/search?q=pants %}
+#   {&#37; urlref http://google.com/search?q=pants &#37;}
 #   ...
 #   <blockquote>
 #     <a href="http://google.com/search?q=pants">The Search For Bobby's Pants</p>
